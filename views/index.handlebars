@@ -1,0 +1,32 @@
+<div class="row">
+    <section class="col-xs-4">
+        <ul class="list-group">
+            {{#each uneatenBurgers}}
+                <li class="list-group-item">
+                    {{burger_name}}
+                    <button type="submit" form="hidden-form" class="btn btn-danger btn-block">Devour</button>
+                </li>
+                <form action="/{{id}}?_method=PUT" method="POST" id="hidden-form" class="hidden-xs-up"></form>
+            {{/each}}
+        </ul>
+    </section>
+
+    <section class="col-xs-4">
+        <h2>Add New Burger</h2>
+        <form method="POST" action="/" class="form">
+            <div class="form-group">
+                <input type="text" name="burger" class="form-control"></input>
+            </div>
+            <button type="submit" class="btn btn-success btn-block">Submit Burger</button>
+        </form>
+    </section>
+
+    <section class="col-xs-4">
+        <ul class="list-group">
+            {{#each devouredBurgers}}
+                <li class="list-group-item">{{burger_name}}</li>
+            {{/each}}
+        </ul>
+    </section>
+</div>
+
