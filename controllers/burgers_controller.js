@@ -6,11 +6,14 @@ var burger = require('../models/burger.js');
 module.exports = function(app) {
     // Get all burgers to be displayed
     app.get('/', function(request, response) {
-        burger.allBurgers(function(burgerData) {
-            response.render('index', {
-                uneatenBurgers: burgerData.uneaten,
-                devouredBurgers: burgerData.devoured
-            });
+        burger.selectAll(function(burgerData) {
+        		// Object to ship up to view
+        		var incomingBurgerDataObject = {
+                burgers: burgerData
+            }
+
+            // Ship it up
+            response.render('index', incomingBurgerDataObject);
         });
     });
 
@@ -23,14 +26,18 @@ module.exports = function(app) {
             return;
         }
         // Create the new burger in DB
-        burger.create(newBurger, function() {
+        burger.insertOne(newBurger, function() {
             response.redirect('/');
         });
     });
 
     // Update burger state in DB
     app.put('/:id', function(request, response) {
-        burger.update(request.params.id, function() {
+    		// Set condition variable
+    		var id = 'id = ' + request.params.id;
+
+    		// Update the burger
+        burger.updateOne(id, function() {
             response.redirect('/');
         });
     });

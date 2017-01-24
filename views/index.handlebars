@@ -1,12 +1,18 @@
 <div class="row">
     <section class="col-xs-4">
         <ul class="list-group">
-            {{#each uneatenBurgers}}
-                <li class="list-group-item">
-                    {{burger_name}}
-                    <button type="submit" form="hidden-form" class="btn btn-danger btn-block">Devour</button>
-                </li>
-                <form action="/{{id}}?_method=PUT" method="POST" id="hidden-form" class="hidden-xs-up"></form>
+            {{!-- Cycles through each burger... --}}
+            {{#each burgers}}
+                {{!-- ...unless it has been devoured list out all cases --}}
+                {{#unless this.devoured}}
+                    <li class="list-group-item">
+                        {{!-- Display burger name --}}
+                        {{this.burger_name}}
+                        <button type="submit" form="{{this.id}}" class="btn btn-danger btn-block">Devour</button>
+                    </li>
+                    {{!-- this.id renders the given burger's ID --}}
+                    <form action="/{{this.id}}?_method=PUT" method="POST" id="{{this.id}}" class="hidden-xs-up"></form>
+                {{/unless}}
             {{/each}}
         </ul>
     </section>
@@ -23,8 +29,13 @@
 
     <section class="col-xs-4">
         <ul class="list-group">
-            {{#each devouredBurgers}}
-                <li class="list-group-item">{{burger_name}}</li>
+            {{!-- Cycles through each burger... --}}
+            {{#each burgers}}
+                {{!-- ...and lists out all cases that have been devoured --}}
+                {{#if this.devoured}}
+                    {{!-- Display burger name --}}
+                    <li class="list-group-item">{{this.burger_name}}</li>
+                {{/if}}
             {{/each}}
         </ul>
     </section>
