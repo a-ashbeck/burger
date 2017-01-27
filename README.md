@@ -4,7 +4,7 @@ This is homework 12 for the Northwestern Coding Boot Camp.
 
 This application allows you to add and then devour burgers, but not really. It's pretty useless, but demonstrates my ability to use MySQL, ORMs, and the MVC model.
 
-Click  to see the app in production on Heroku.
+Click [**here**](https://infinite-thicket-80556.herokuapp.com/) to see the app in production on Heroku.
 
 ## Setup
 
