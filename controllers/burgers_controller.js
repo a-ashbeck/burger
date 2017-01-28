@@ -7,8 +7,8 @@ module.exports = function(app) {
     // Get all burgers to be displayed
     app.get('/', function(request, response) {
         burger.selectAll(function(burgerData) {
-        		// Object to ship up to view
-        		var incomingBurgerDataObject = {
+            // Object to ship up to view
+            var incomingBurgerDataObject = {
                 burgers: burgerData
             }
 
@@ -33,10 +33,10 @@ module.exports = function(app) {
 
     // Update burger state in DB
     app.put('/:id', function(request, response) {
-    		// Set condition variable
-    		var id = 'id = ' + request.params.id;
+        // Set condition variable
+        var id = 'id = ' + request.params.id;
 
-    		// Update the burger
+        // Update the burger
         burger.updateOne(id, function() {
             response.redirect('/');
         });
